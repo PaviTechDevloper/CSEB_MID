@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: skillexchange-app
+  namespace: cseb-mid-ns
   labels:
     app: skillexchange-app
     version: v1
@@ -97,6 +98,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: skillexchange-app-hpa
+  namespace: cseb-mid-ns
   labels:
     app: skillexchange-app
 spec:
