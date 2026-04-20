@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: skillexchange-app
+  namespace: cseb-mid-ns
+spec:
+  replicas: 3
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: skillexchange-app
+  template:
+    metadata:
+      labels:
+        app: skillexchange-app
+    spec:
+      containers:
+        - name: skillexchange-app
+          image: hardyboy20/skillexchange-app:latest
+          ports:
+            - containerPort: 3000
+
+  strategy:
+    blueGreen:
+      activeService: skillexchange-app-active
+      previewService: skillexchange-app-preview
+      autoPromotionEnabled: false
